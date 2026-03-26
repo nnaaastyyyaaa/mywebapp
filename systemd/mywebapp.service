@@ -1,0 +1,14 @@
+[Unit]
+Description=mywebapp
+
+[Service]
+User=app
+WorkingDirectory=/opt/mywebapp
+
+ExecStartPre=/opt/mywebapp/migrate.sh
+
+ExecStart=/usr/bin/node /opt/mywebapp/server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
