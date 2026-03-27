@@ -18,7 +18,11 @@ usermod -aG sudo teacher
 useradd -m -s /bin/bash -g users operator
 echo "operator:12345678" | chpasswd
 
-useradd -r -s /usr/sbin/nologin app
+useradd -r -m -d /home/app -s /usr/sbin/nologin app
+
+mkdir -p /home/app
+chown -R app:app /home/app
+chmod 700 /home/app
 
 chage -d 0 teacher
 chage -d 0 operator
@@ -33,8 +37,8 @@ echo "operator ALL=(ALL) NOPASSWD: \
 chown -R app:app /opt/mywebapp
 chmod -R 750 /opt/mywebapp
 
-sudo -u app mkdir -p /etc/mywebapp
-sudo -u app cp /opt/mywebapp/.env.example /etc/mywebapp/.env
+sudo  mkdir -p /etc/mywebapp
+sudo  cp /opt/mywebapp/.env.example /etc/mywebapp/.env
 chown -R app:app /etc/mywebapp
 chmod -R 750 /etc/mywebapp
 
