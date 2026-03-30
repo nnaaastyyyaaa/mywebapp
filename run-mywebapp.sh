@@ -48,6 +48,7 @@ sudo -u app npm install --prefix /opt/mywebapp
 echo 'Creating systemd-unit...'
 chmod +x /opt/mywebapp/migrate.sh
 sudo cp /opt/mywebapp/systemd/mywebapp.service /etc/systemd/system/mywebapp.service
+sudo cp /opt/mywebapp/systemd/mywebapp.socket /etc/systemd/system/mywebapp.socket
 
 sudo systemctl daemon-reload
 sudo systemctl start mywebapp
@@ -57,6 +58,7 @@ echo 'Setting up nginx proxy...'
 sudo cp /opt/mywebapp/nginx/mywebapp.conf /etc/nginx/sites-available/mywebapp
 
 sudo ln -s /etc/nginx/sites-available/mywebapp /etc/nginx/sites-enabled/mywebapp
+sudo unlink /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl reload nginx
 

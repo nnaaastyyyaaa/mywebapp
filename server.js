@@ -1,10 +1,10 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: "./etc/mywebapp/.env" });
 
-const app = require("./app");
-const port = process.env.PORT || 5200;
-const host = process.env.HOST || "127.0.0.1";
+const http = require("http");
 
-app.listen(port, host, () => {
-  console.log(`Listening on  ${host}:${port}`);
-});
+const app = require("./app");
+
+const server = http.createServer(app);
+
+server.listen({ fd: 3 });
