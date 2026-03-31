@@ -51,7 +51,8 @@ sudo cp /opt/mywebapp/systemd/mywebapp.service /etc/systemd/system/mywebapp.serv
 sudo cp /opt/mywebapp/systemd/mywebapp.socket /etc/systemd/system/mywebapp.socket
 
 sudo systemctl daemon-reload
-sudo systemctl start mywebapp
+sudo systemctl enable mywebapp.socket
+sudo systemctl start mywebapp.socket
 
 echo 'Setting up nginx proxy...'
 
