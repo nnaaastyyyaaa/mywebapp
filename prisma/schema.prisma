@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Task {
-  task_id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
   title String @db.VarChar(32)
   status task_status @default(pending)
   created_at DateTime @default(now())
