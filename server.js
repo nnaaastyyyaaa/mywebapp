@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-dotenv.config({ path: "/etc/mywebapp/.env" });
+dotenv.config({ path: "/etc/mywebapp/config.env" });
 
 const http = require("http");
 

@@ -42,7 +42,7 @@ chown -R app:app /opt/mywebapp
 chmod -R 750 /opt/mywebapp
 
 sudo  mkdir -p /etc/mywebapp
-sudo  cp /opt/mywebapp/.env.example /etc/mywebapp/.env
+sudo  cp /opt/mywebapp/.env.example /etc/mywebapp/config.env
 chown -R app:app /etc/mywebapp
 chmod -R 750 /etc/mywebapp
 

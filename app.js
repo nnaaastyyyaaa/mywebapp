@@ -6,7 +6,7 @@ const { getRootView } = require("./views/templates/root");
 const app = express();
 app.use(express.json());
 
-app.use("/api", tasksRouter);
+app.use("/", tasksRouter);
 app.use("/health", healthRoutes);
 app.get("/", (req, res) => {
   const accept = req.headers.accept || "";
