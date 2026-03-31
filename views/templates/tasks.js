@@ -2,7 +2,7 @@ exports.renderTasksHtml = (tasks) => {
   let rows = ``;
   for (const task of tasks)
     rows += `      <tr>
-        <td>${task.task_id}</td>
+        <td>${task.id}</td>
         <td>${task.title}</td>
         <td>${task.status}</td>
         <td>${task.created_at}</td>
@@ -62,7 +62,7 @@ exports.taskWithChangedStatus = (task) => `<!doctype html>
         <td>Created at</td>
       </tr>
       <tr>
-        <td>${task.task_id}</td>
+        <td>${task.id}</td>
         <td>${task.title}</td>
         <td>${task.status}</td>
         <td>${task.created_at}</td>

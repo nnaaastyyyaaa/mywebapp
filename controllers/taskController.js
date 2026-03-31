@@ -42,7 +42,7 @@ exports.setTaskDone = async (req, res) => {
     const id = req.params.id;
     const task = await prisma.task.update({
       where: {
-        task_id: Number(id),
+        id: Number(id),
       },
       data: {
         status: "done",
