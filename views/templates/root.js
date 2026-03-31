@@ -6,9 +6,9 @@ exports.getRootView = () => `
         <ul>
           <li>GET /health/alive</li>
           <li>GET /health/ready</li>
-          <li>GET /notes (or /tasks /items depending on variant)</li>
-          <li>POST /notes</li>
-          <li>GET /notes/:id</li>
+          <li>GET /tasks (or /tasks /items depending on variant)</li>
+          <li>POST /tasks</li>
+          <li>GET /tasks/:id</li>
         </ul>
       </body>
     </html>
