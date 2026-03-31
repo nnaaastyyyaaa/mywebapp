@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const {
   renderTasksHtml,
   createdTask,
-  renderOneTaskHtml,
+  taskWithChangedStatus,
 } = require("../views/templates/tasks");
 
 const prisma = new PrismaClient();
@@ -37,17 +37,20 @@ exports.createTask = async (req, res) => {
   }
 };
 
-exports.getTask = async (req, res) => {
+exports.setTaskDone = async (req, res) => {
   try {
     const id = req.params.id;
-    const task = await prisma.task.findUnique({
+    const task = await prisma.task.update({
       where: {
         task_id: Number(id),
+      },
+      data: {
+        status: "done",
       },
     });
     if (!task) return res.status(400).send("Note not found");
     if (req.headers.accept?.includes("text/html")) {
-      return res.send(renderOneTaskHtml(task));
+      return res.send(taskWithChangedStatus(task));
     }
     res.json(task);
   } catch (error) {

@@ -45,7 +45,7 @@ exports.createdTask = () => `<!doctype html>
 </html>
 `;
 
-exports.renderOneTaskHtml = (task) => `<!doctype html>
+exports.taskWithChangedStatus = (task) => `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -53,7 +53,7 @@ exports.renderOneTaskHtml = (task) => `<!doctype html>
     <title>All tasks</title>
   </head>
   <body>
-    <h1>Your task:</h1>
+    <h1>Successfully updated your task status!</h1>
     <table>
       <tr>
         <td>Id</td>
