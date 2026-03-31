@@ -6,9 +6,11 @@ Requires=mywebapp.socket
 User=app
 WorkingDirectory=/opt/mywebapp
 
+EnvironmentFile=/etc/mywebapp/.env
+
 ExecStartPre=/opt/mywebapp/migrate.sh
 ExecStart=/usr/bin/node /opt/mywebapp/server.js
 
 Restart=on-failure
 
-StandardInput=socket
+Sockets=mywebapp.socket
