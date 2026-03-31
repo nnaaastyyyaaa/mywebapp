@@ -24,6 +24,10 @@ mkdir -p /home/app
 chown -R app:app /home/app
 chmod 700 /home/app
 
+mkdir -p /home/student
+echo "N=1" > /home/student/gradebook
+chown -R student:student /home/student
+
 chage -d 0 teacher
 chage -d 0 operator
 
