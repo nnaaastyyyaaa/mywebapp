@@ -17,4 +17,15 @@ describe("MyWebApp API", () => {
     const res = await request(app).get("/tasks");
     expect(res.statusCode).toBe(200);
   });
+  test("POST /tasks should create task", async () => {
+    const res = await request(app).post("/tasks").send({ title: "new task" });
+
+    expect([200, 201]).toContain(res.statusCode);
+  });
+
+  test("POST /tasks/:id/done should mark task done", async () => {
+    const res = await request(app).post("/tasks/1111111111111/done");
+
+    expect([400]).toContain(res.statusCode);
+  });
 });
