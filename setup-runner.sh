@@ -1,6 +1,6 @@
 #!/bin/bash
 echo  "Creating a folder..."
-mkdir actions-runner && cd actions-runner
+mkdir actions-runner && cd actions-runner || exit
 
 echo "Downloading the latest runner package"
 curl -o actions-runner-osx-x64-2.334.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.334.0/actions-runner-osx-x64-2.334.0.tar.gz
