@@ -1,0 +1,57 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - "*"
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  test:
+    uses: ./.github/workflows/test.yml
+
+  build:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Set image name
+        run: echo "IMAGE=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
+
+      # 🧪 тут має бути lint + test (як prerequisite)
+      - name: Run tests
+        run: |
+          npm ci
+          npm test
+
+      - name: Build Docker image
+        run: |
+          docker build -t $IMAGE:latest .
+
+      - name: Tag images
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            TAG=${GITHUB_REF#refs/tags/}
+            docker tag $IMAGE:latest $IMAGE:stable
+            docker tag $IMAGE:latest $IMAGE:$TAG
+          else
+            SHA=${GITHUB_SHA}
+            docker tag $IMAGE:latest $IMAGE:sha-$SHA
+          fi
+
+      - name: Push images
+        run: |
+          docker push $IMAGE --all-tags

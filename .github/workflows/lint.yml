@@ -1,13 +1,9 @@
 name: Code Quality Check
 
 on:
-  push:
-    branches: [main]
-    tags:
-      - "*"
   pull_request:
     branches: [main]
-
+  workflow_call:
 jobs:
   lint:
     runs-on: ubuntu-latest
