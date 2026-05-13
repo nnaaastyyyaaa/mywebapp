@@ -24,4 +24,18 @@ export default defineConfig([
     language: "css/css",
     extends: ["css/recommended"],
   },
+  {
+    files: ["tests/**/*.js"],
+    languageOptions: {
+      globals: {
+        describe: "readonly",
+        test: "readonly",
+        expect: "readonly",
+        jest: "readonly",
+      },
+    },
+  },
+  {
+    ignores: ["node_modules/**", "coverage/**", "prisma/**", "**/*.min.js"],
+  },
 ]);
