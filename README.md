@@ -23,16 +23,16 @@ Task Tracker — сервіс для відстеження задач.
     - POST /tasks (title) — створити нову задачу
     - POST /tasks/<id>/done — змінити статус задачі на виконано
 
-## Порт застосунку та конфігурація(V5 та V2):
+### Порт застосунку та конфігурація(V5 та V2):
 
 Конфігураційний файл за шляхом /etc/mywebapp/config.env.
 Порт: 5200
 
-## База даних(V2):
+### База даних(V2):
 
 PostgreSQL
 
-# Застосунок та його призначення
+## Застосунок та його призначення
 
 Mywebapp - сервіс для відстеження задач. Допомагає прослідковувати виконані та невиконані задачі
 
@@ -78,7 +78,7 @@ curl http://0.0.0.0:80/tasks
 curl -X POST http://0.0.0.0:80/tasks -d '{"title":"to do homework"}' -H 'Content-Type: application/json'
 ```
 
-## POST /tasks/:id/done
+### POST /tasks/:id/done
 
 Дозволяє позначити відповідну задачу виконаною
 
@@ -92,7 +92,7 @@ curl -X POST http://0.0.0.0:80/tasks/2/done -H 'Content-Type: application/json'
 curl -X POST http://0.0.0.0:80/tasks/2/done -H 'Accept: text/html' -H 'Content-Type: application/json'
 ```
 
-# Необхідні інструменти для розробки/тестування/запуску застосунку
+## Необхідні інструменти для розробки/тестування/запуску застосунку
 
 - Для розробки застосунку було використано кодовий редатор [VSCode](https://code.visualstudio.com/).
 
@@ -100,7 +100,7 @@ curl -X POST http://0.0.0.0:80/tasks/2/done -H 'Accept: text/html' -H 'Content-T
 
 - Тестувати застосунок можна у програмі [Postman](https://www.postman.com/), вбудованому терміналі у прграми [VSCode](https://code.visualstudio.com/) або терміналі операційної системи Bash shell
 
-# Запуск застосунку
+## Запуск застосунку
 
 Після успішного встановлення застосунку, systemd автоматично керує запуском сервісу за допомогою [systemd socket activation](https://ilmanzo.github.io/post/systemd-socket-activated-services/) та reverse proxy. Застосунок запускається від системного користувача app.
 
@@ -119,9 +119,9 @@ sudo systemctl restart mywebapp
 sudo systemctl reload nginx
 ```
 
-# Розгортання застосунку mywebapp
+## Розгортання застосунку mywebapp
 
-## Встановлення операційної системи Linux
+### Встановлення операційної системи Linux
 
 1. Для початку потрібно встановити образ [Ubuntu 24](https://ubuntu.com/download/server#manual-install-tab), а також програму [VirtualBox](https://www.virtualbox.org/) для створення віртуальної машини.
 
@@ -207,7 +207,7 @@ sudo systemctl reload nginx
 
 16. Тепер можна важати розгортання застосунку завершеним і тестувати застосунок, використовуючи ендпоінти, вказані в розділі [API застосунку](#api-застосунку)
 
-## Розгортання за допомгою Docker
+### Розгортання за допомгою Docker
 
 1. Встановіть [Docker](https://www.docker.com/products/docker-desktop/)
 
