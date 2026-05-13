@@ -1,0 +1,29 @@
+name: Deploy to Target Node
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy via SSH
+        run: |
+          ssh ubuntu@192.168.56.4 "
+            cd /opt/mywebapp &&
+            git pull &&
+            docker pull ghcr.io/${{ github.repository }}:stable ||
+            true &&
+            sudo systemctl restart mywebapp
+          "
+
+      - name: Verify deployment
+        run: |
+          ssh ubuntu@192.168.56.4 "
+            curl -f http://localhost/health/alive &&
+            curl -f http://localhost/health/ready &&
+            docker ps &&
+            sudo systemctl status mywebapp --no-pager
+          "
