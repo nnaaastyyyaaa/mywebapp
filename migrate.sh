@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export $(grep -v '^#' /etc/mywebapp/.env | xargs)
+export "$(grep -v '^#' /etc/mywebapp/.env | xargs)"
 
 cd /opt/mywebapp
 
