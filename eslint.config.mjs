@@ -1,6 +1,5 @@
 import js from "@eslint/js";
 import globals from "globals";
-import json from "@eslint/json";
 import markdown from "@eslint/markdown";
 import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
