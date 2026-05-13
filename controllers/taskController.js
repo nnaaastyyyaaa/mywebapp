@@ -1,11 +1,10 @@
-const { PrismaClient } = require("@prisma/client");
 const {
   renderTasksHtml,
   createdTask,
   taskWithChangedStatus,
 } = require("../views/templates/tasks");
 
-const prisma = new PrismaClient();
+const prisma = require("../prisma/prismaClient");
 
 exports.getTasks = async (req, res) => {
   try {
