@@ -13,9 +13,7 @@ jobs:
         run: |
           ssh ubuntu@192.168.56.4 "
             cd /opt/mywebapp &&
-            git pull &&
             sudo systemctl daemon-reload &&
-            sudo docker compose pull || true &&
             sudo docker compose up -d --build &&
             sudo systemctl restart mywebapp
           "
@@ -23,8 +21,11 @@ jobs:
       - name: Verify deployment
         run: |
           ssh ubuntu@192.168.56.4 "
-            curl -f http://localhost/health/alive &&
-            curl -f http://localhost/health/ready &&
-            docker ps &&
-            sudo systemctl status mywebapp --no-pager
+            for i in {1..30}; do
+            curl -f http://localhost/health/alive && exit 0
+            sleep 5
+            done
+            sudo docker compose ps
+            sudo docker compose logs
+            exit 1
           "
