@@ -21,6 +21,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable mywebapp.service
 
 sudo chown ubuntu:ubuntu /opt/mywebapp
+sudo usermod -aG docker ubuntu
+newgrp docker
 
 echo "Starting app..."
 sudo systemctl start mywebapp.service

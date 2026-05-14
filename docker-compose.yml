@@ -1,6 +1,7 @@
 services:
   web:
     image: ghcr.io/nnaaastyyyaaa/mywebapp:stable
+    platform: linux/arm64
     container_name: mywebapp_web
     environment:
       DOCKER: "true"
