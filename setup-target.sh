@@ -20,6 +20,8 @@ sudo cp /opt/mywebapp/systemd/mywebapp-docker.service /etc/systemd/system/myweba
 sudo systemctl daemon-reload
 sudo systemctl enable mywebapp.service
 
+sudo chown ubuntu:ubuntu /opt/mywebapp
+
 echo "Starting app..."
 sudo systemctl start mywebapp.service
 

@@ -14,8 +14,9 @@ jobs:
           ssh ubuntu@192.168.56.4 "
             cd /opt/mywebapp &&
             git pull &&
-            docker pull ghcr.io/${{ github.repository }}:stable ||
-            true &&
+            sudo systemctl daemon-reload &&
+            sudo docker compose pull || true &&
+            sudo docker compose up -d --build &&
             sudo systemctl restart mywebapp
           "
 

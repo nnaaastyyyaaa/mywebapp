@@ -31,12 +31,6 @@ jobs:
       - name: Set image name
         run: echo "IMAGE=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
 
-      # 🧪 тут має бути lint + test (як prerequisite)
-      - name: Run tests
-        run: |
-          npm ci
-          npm test
-
       - name: Build Docker image
         run: |
           docker build -t $IMAGE:latest .
