@@ -18,8 +18,6 @@ jobs:
             cd /opt/mywebapp &&
             docker compose pull &&
             docker compose up -d
-            sudo systemctl daemon-reload &&
-            sudo systemctl restart mywebapp
           "
 
       - name: Verify deployment
@@ -29,7 +27,7 @@ jobs:
             curl -f http://localhost/health/alive && exit 0
             sleep 5
             done
-            sudo docker compose ps
-            sudo docker compose logs
+            docker compose ps
+            docker compose logs
             exit 1
           "
