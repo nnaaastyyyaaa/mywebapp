@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: ghcr.io/nnaaastyyyaaa/mywebapp:stable
     container_name: mywebapp_web
     environment:
       DOCKER: "true"
