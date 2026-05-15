@@ -26,6 +26,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -35,21 +38,24 @@ jobs:
       - name: Set image name
         run: echo "IMAGE=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
 
-      - name: Build Docker image
-        run: |
-          docker build --platform linux/arm64 -t $IMAGE:latest .
-
-      - name: Tag images
+      - name: Build and Push
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             TAG=${GITHUB_REF#refs/tags/}
-            docker tag $IMAGE:latest $IMAGE:stable
-            docker tag $IMAGE:latest $IMAGE:$TAG
+
+            docker buildx build \
+              --platform linux/arm64 \
+              -t $IMAGE:latest \
+              -t $IMAGE:stable \
+              -t $IMAGE:$TAG \
+              --push .
+
           else
             SHA=${GITHUB_SHA}
-            docker tag $IMAGE:latest $IMAGE:sha-$SHA
-          fi
 
-      - name: Push images
-        run: |
-          docker push $IMAGE --all-tags
+            docker buildx build \
+              --platform linux/arm64 \
+              -t $IMAGE:latest \
+              -t $IMAGE:sha-$SHA \
+              --push .
+          fi
