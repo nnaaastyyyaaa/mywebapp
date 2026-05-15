@@ -1,4 +1,4 @@
-FROM node:24 AS builder
+FROM --platform=linux/arm64  node:24 AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 
 RUN npx prisma generate
 
-FROM node:24
+FROM --platform=linux/arm64  node:24
 
 WORKDIR /app
 
