@@ -8,6 +8,9 @@ echo 'Enabling docker...'
 sudo systemctl enable docker
 sudo systemctl start docker
 
+sudo chown ubuntu:ubuntu /opt/mywebapp
+sudo usermod -aG docker ubuntu
+
 echo 'Enabling nginx default...'
 
 sudo unlink /etc/nginx/sites-enabled/default
@@ -19,10 +22,6 @@ echo 'Creating systemd-unit...'
 sudo cp /opt/mywebapp/systemd/mywebapp-docker.service /etc/systemd/system/mywebapp.service
 sudo systemctl daemon-reload
 sudo systemctl enable mywebapp.service
-
-sudo chown ubuntu:ubuntu /opt/mywebapp
-sudo usermod -aG docker ubuntu
-newgrp docker
 
 echo "Starting app..."
 sudo systemctl start mywebapp.service

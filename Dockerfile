@@ -16,11 +16,11 @@ WORKDIR /app
 
 COPY --from=builder /app /app
 
-COPY scripts/migrate.sh /migrate.sh
-RUN chmod +x /migrate.sh
+COPY scripts/migrate-container.sh /migrate-container.sh
+RUN chmod +x /migrate-container.sh
 
 ENV DOCKER=true
 
 EXPOSE 5200
 
-CMD ["/migrate.sh"]
+CMD ["/migrate-container.sh"]
