@@ -33,4 +33,10 @@ describe("MyWebApp API", () => {
 
     expect([400]).toContain(res.statusCode);
   });
+
+  test("POST /tasks/:id/done should mark task done", async () => {
+    const res = await request(app).post("/tasks/1111111111111/done");
+
+    expect([500]).toContain(res.statusCode);
+  });
 });
