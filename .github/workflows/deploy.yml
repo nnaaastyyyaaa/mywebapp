@@ -28,6 +28,7 @@ jobs:
         run: |
           ssh ubuntu@192.168.56.4 "
             set -e
+            cd /opt/mywebapp
 
             curl -f http://localhost/health/alive
             curl -f http://localhost/health/ready
