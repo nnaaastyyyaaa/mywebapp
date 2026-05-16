@@ -18,10 +18,10 @@ jobs:
     steps:
       - name: Deploy via SSH
         run: |
-          ssh -tt ubuntu@192.168.56.4 "
+          ssh ubuntu@192.168.56.4 "
             cd /opt/mywebapp &&
             docker compose pull &&
-            sudo systemctl restart mywebapp --no-block &&
+            sudo -n systemctl restart mywebapp --no-block ;
             exit
           "
 
