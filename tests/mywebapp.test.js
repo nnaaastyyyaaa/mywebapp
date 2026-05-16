@@ -7,6 +7,11 @@ describe("MyWebApp API", () => {
     expect(res.statusCode).toBe(200);
   });
 
+  test("GET /health/ready should return 200", async () => {
+    const res = await request(app).get("/health/ready");
+    expect(res.statusCode).toBe(200);
+  });
+
   test("GET / should return HTML", async () => {
     const res = await request(app).get("/").set("Accept", "text/html");
 
