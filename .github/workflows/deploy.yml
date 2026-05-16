@@ -30,7 +30,7 @@ jobs:
             set -e
 
             curl -f http://localhost/health/alive
-            curl -f http://localhost/health
+            curl -f http://localhost/health/ready
 
             docker compose ps
           "
