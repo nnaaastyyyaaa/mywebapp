@@ -28,7 +28,7 @@ jobs:
         run: |
           ssh ubuntu@192.168.56.4 "
             for i in {1..30}; do
-            curl -f http://localhost/health/alive && exit 0
+            curl -f http://localhost/health/alive && curl -f http://localhost/health &&  exit 0
             sleep 5
             done
             docker compose ps
