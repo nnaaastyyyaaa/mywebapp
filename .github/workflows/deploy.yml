@@ -21,8 +21,8 @@ jobs:
           ssh -tt ubuntu@192.168.56.4 "
             cd /opt/mywebapp &&
             docker compose pull &&
-            docker compose up -d &&
-            sudo systemctl restart mywebapp
+            sudo systemctl restart mywebapp --no-block &&
+            exit
           "
 
       - name: Verify deployment
