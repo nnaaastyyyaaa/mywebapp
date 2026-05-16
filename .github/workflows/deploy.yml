@@ -30,8 +30,21 @@ jobs:
             set -e
             cd /opt/mywebapp
 
-            curl -f http://localhost/health/alive
-            curl -f http://localhost/health/ready
+            for i in {1..30}; do
+                if curl -fs http://localhost/health/alive && curl -fs http://localhost/health/ready; then
+                  echo "App is ready"
+                  exit 0
+                fi
+
+                echo "Waiting for app... attempt $i/30"
+                sleep 5
+              done
+
+              echo "App failed health check"
+              docker compose ps
+              docker compose logs web --tail=100
+              docker compose logs nginx --tail=100
+              exit 1
 
             docker compose ps
           "
