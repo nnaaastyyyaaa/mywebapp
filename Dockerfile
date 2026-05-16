@@ -15,7 +15,7 @@ FROM node:24
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends postgresql-client=15 \
+    && apt-get install -y --no-install-recommends postgresql-client-15 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app /app
