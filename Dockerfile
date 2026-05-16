@@ -16,8 +16,11 @@ WORKDIR /app
 
 COPY --from=builder /app /app
 
+COPY scripts/migrate.sh /migrate.sh
+RUN chmod +x /migrate.sh
+
 ENV DOCKER=true
 
 EXPOSE 5200
 
-CMD ["node", "server.js"]
+CMD ["/migrate.sh"]

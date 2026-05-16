@@ -50,7 +50,7 @@ echo 'Installing dependencies...'
 sudo -u app npm install --prefix /opt/mywebapp
 
 echo 'Creating systemd-unit...'
-chmod +x /opt/mywebapp/migrate.sh
+chmod +x /opt/mywebapp/scripts/migrate.sh
 sudo cp /opt/mywebapp/systemd/mywebapp.service /etc/systemd/system/mywebapp.service
 sudo cp /opt/mywebapp/systemd/mywebapp.socket /etc/systemd/system/mywebapp.socket
 
