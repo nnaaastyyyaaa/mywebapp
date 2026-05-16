@@ -14,7 +14,9 @@ FROM node:24
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y postgresql-client
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends postgresql-client=16+248 \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app /app
 
