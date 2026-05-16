@@ -14,6 +14,8 @@ FROM node:24
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y postgresql-client
+
 COPY --from=builder /app /app
 
 COPY scripts/migrate-container.sh /migrate-container.sh
