@@ -22,7 +22,7 @@ jobs:
             cd /opt/mywebapp &&
             docker compose pull &&
             docker compose up -d &&
-            systemctl restart mywebapp
+            sudo systemctl restart mywebapp
           "
 
       - name: Verify deployment
