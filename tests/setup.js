@@ -11,4 +11,5 @@ jest.mock("../prisma/prismaClient", () => ({
     create: jest.fn(),
     update: jest.fn(),
   },
+  $queryRaw: jest.fn(),
 }));
